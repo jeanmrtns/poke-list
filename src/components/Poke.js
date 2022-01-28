@@ -29,14 +29,18 @@ function Poke() {
   return (
     <div className='Pokemon'>
       <ul>
-        {pokemon.map((poke) => (
-          <li key={poke.name}>
-            <h3>{poke.name}</h3>
-            <a key={poke.url} href={poke.url}>
-              Take a look
-            </a>
-          </li>
-        ))}
+        {pokemon.map((poke) => {
+          const pokeNumber = poke.url.split('/')[6];
+          return (
+            <li key={poke.name}>
+              <h3>{poke.name}</h3>
+              {<img src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${pokeNumber}.png`} alt={poke.name} /> }
+              <a key={poke.url} href={poke.url}>
+                Take a look
+              </a>
+            </li>
+          )
+        })}
       </ul>
       <div className='page-btn'>
         {prevUrl ? <button onClick={prevPage}>Previous</button> : null}
